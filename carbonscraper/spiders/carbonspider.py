@@ -29,7 +29,13 @@ class CarbonSpider(scrapy.Spider):
 
 
         yield {
-            "product_name":extract_with_xpath("//h1/text()")
+            "image_url":extract_with_xpath("//a[contains(@class, 'Product__SlideshowNavImage')]//img/@src") ,
+            "brand":extract_with_xpath('//h2[contains(@class, "ProductMeta__Vendor")]/a/text()'),
+            "product_name":extract_with_xpath("//h1/text()"),
+            "price":extract_with_xpath("//span[contains(@class,'ProductMeta__Price')]/text()"),
+            "colour":extract_with_xpath("//span[contains(@class,'ProductForm__SelectedValue')]/text()"),
+            "sizes":extract_with_xpath("//label[contains(@class,'SizeSwatch')]/text()") ,
+            "description":extract_with_xpath("//div[contains(@class,'Faq__Answer')]/span/text()")
         }
 
 
